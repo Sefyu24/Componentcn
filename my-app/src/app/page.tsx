@@ -14,13 +14,17 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 
 export default function Home() {
   const [variant, setVariant] = useState<variant>("destructive");
+  const [borderRadius, setBorderRadius] = useState("md");
+  const [bgColor, setBgColor] = useState("primary");
+  const [textSize, setTextSize] = useState("sm");
+  const [fontWeight, setFontWeight] = useState("medium");
+
   const variants: variant[] = [
     "default",
     "link",
@@ -45,7 +49,7 @@ export default function Home() {
         <CardContent className="flex col-2 justify-between">
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
-              <AccordionTrigger>Hello</AccordionTrigger>
+              <AccordionTrigger>Select Variant</AccordionTrigger>
               <AccordionContent>
                 <Select
                   value={variant}
@@ -66,8 +70,116 @@ export default function Home() {
                 </Select>
               </AccordionContent>
             </AccordionItem>
+            <AccordionItem value="item-2">
+              <AccordionTrigger>Modify Style</AccordionTrigger>
+              <AccordionContent>
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Border Radius
+                    </label>
+                    <Select
+                      value={borderRadius}
+                      onValueChange={setBorderRadius}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select border radius" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="none">
+                            None (rounded-none)
+                          </SelectItem>
+                          <SelectItem value="sm">Small (rounded-sm)</SelectItem>
+                          <SelectItem value="md">
+                            Medium (rounded-md)
+                          </SelectItem>
+                          <SelectItem value="lg">Large (rounded-lg)</SelectItem>
+                          <SelectItem value="full">
+                            Full (rounded-full)
+                          </SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Background Color
+                    </label>
+                    <Select value={bgColor} onValueChange={setBgColor}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select background color" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="primary">Primary</SelectItem>
+                          <SelectItem value="secondary">Secondary</SelectItem>
+                          <SelectItem value="destructive">
+                            Destructive
+                          </SelectItem>
+                          <SelectItem value="accent">Accent</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Text Size
+                    </label>
+                    <Select value={textSize} onValueChange={setTextSize}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select text size" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="xs">
+                            Extra Small (text-xs)
+                          </SelectItem>
+                          <SelectItem value="sm">Small (text-sm)</SelectItem>
+                          <SelectItem value="base">Base (text-base)</SelectItem>
+                          <SelectItem value="lg">Large (text-lg)</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <label className="text-sm font-medium mb-2 block">
+                      Font Weight
+                    </label>
+                    <Select value={fontWeight} onValueChange={setFontWeight}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select font weight" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="normal">
+                            Normal (font-normal)
+                          </SelectItem>
+                          <SelectItem value="medium">
+                            Medium (font-medium)
+                          </SelectItem>
+                          <SelectItem value="semibold">
+                            Semibold (font-semibold)
+                          </SelectItem>
+                          <SelectItem value="bold">Bold (font-bold)</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
-          <TestComponent variant={variant} />
+          <TestComponent
+            variant={variant}
+            borderRadius={borderRadius}
+            bgColor={bgColor}
+            textSize={textSize}
+            fontWeight={fontWeight}
+          />
         </CardContent>
       </Card>
     </main>
