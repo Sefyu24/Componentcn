@@ -26,7 +26,7 @@ export default function TestComponent({
 }: TestComponentProps) {
   // Map the values to Tailwind classes
   const borderRadiusClass = `rounded-${borderRadius}`;
-  const bgColorClass = bgColor ? `bg-${bgColor}` : "";
+  const bgColorClass = bgColor && bgColor !== "none" ? `bg-${bgColor}` : "";
   const textSizeClass = `text-${textSize}`;
   const fontWeightClass = `font-${fontWeight}`;
 

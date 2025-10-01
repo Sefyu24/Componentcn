@@ -21,7 +21,7 @@ import {
 export default function Home() {
   const [variant, setVariant] = useState<variant>("destructive");
   const [borderRadius, setBorderRadius] = useState("md");
-  const [bgColor, setBgColor] = useState("primary");
+  const [bgColor, setBgColor] = useState("none");
   const [textSize, setTextSize] = useState("sm");
   const [fontWeight, setFontWeight] = useState("medium");
 
@@ -35,7 +35,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="mt-5">
+    <main className="mt-5 p-4 flex">
       <h1 className="flex justify-center text-2xl font-semibold">
         In this page we are going to show how you can modify a component:{" "}
       </h1>
@@ -46,8 +46,8 @@ export default function Home() {
       */}
 
       <Card className="flex w-auto" defaultValue="item-1">
-        <CardContent className="flex col-2 justify-between">
-          <Accordion type="single" collapsible>
+        <CardContent className="flex col-2 justify-between gap-8">
+          <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger>Select Variant</AccordionTrigger>
               <AccordionContent>
@@ -113,6 +113,9 @@ export default function Home() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
+                          <SelectItem value="none">
+                            None (Use variant default)
+                          </SelectItem>
                           <SelectItem value="primary">Primary</SelectItem>
                           <SelectItem value="secondary">Secondary</SelectItem>
                           <SelectItem value="destructive">
