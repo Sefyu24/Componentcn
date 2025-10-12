@@ -20,25 +20,18 @@ interface TestComponentProps {
 export default function TestComponent({
   variant,
   borderRadius = "md",
-  bgColor,
   textSize = "sm",
   fontWeight = "medium",
 }: TestComponentProps) {
   // Map the values to Tailwind classes
   const borderRadiusClass = `rounded-${borderRadius}`;
-  const bgColorClass = bgColor && bgColor !== "none" ? `bg-${bgColor}` : "";
   const textSizeClass = `text-${textSize}`;
   const fontWeightClass = `font-${fontWeight}`;
 
   return (
     <Button
       variant={variant}
-      className={cn(
-        borderRadiusClass,
-        bgColorClass,
-        textSizeClass,
-        fontWeightClass
-      )}
+      className={cn(borderRadiusClass, textSizeClass, fontWeightClass)}
     >
       Hello
     </Button>

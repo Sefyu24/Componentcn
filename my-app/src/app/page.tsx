@@ -35,7 +35,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="mt-5 p-4 flex">
+    <main className="mt-5 p-4">
       <h1 className="flex justify-center text-2xl font-semibold">
         In this page we are going to show how you can modify a component:{" "}
       </h1>
@@ -45,146 +45,134 @@ export default function Home() {
       and other things like that in our component 
       */}
 
-      <Card className="flex w-auto" defaultValue="item-1">
-        <CardContent className="flex col-2 justify-between gap-8">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Select Variant</AccordionTrigger>
-              <AccordionContent>
-                <Select
-                  value={variant}
-                  onValueChange={(value) => setVariant(value as variant)}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="please select a variant" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      {variants.map((v) => (
-                        <SelectItem key={v} value={v}>
-                          {v}{" "}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>Modify Style</AccordionTrigger>
-              <AccordionContent>
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Border Radius
-                    </label>
-                    <Select
-                      value={borderRadius}
-                      onValueChange={setBorderRadius}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select border radius" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="none">
-                            None (rounded-none)
+      <div className="border-red border-4 flex flex-row gap-10">
+        <Card className="flex w-auto mb-4 border-4" defaultValue="item-1">
+          <CardContent className="flex col-2 justify-between gap-10">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>Select Variant</AccordionTrigger>
+                <AccordionContent>
+                  <Select
+                    value={variant}
+                    onValueChange={(value) => setVariant(value as variant)}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="please select a variant" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        {variants.map((v) => (
+                          <SelectItem key={v} value={v}>
+                            {v}{" "}
                           </SelectItem>
-                          <SelectItem value="sm">Small (rounded-sm)</SelectItem>
-                          <SelectItem value="md">
-                            Medium (rounded-md)
-                          </SelectItem>
-                          <SelectItem value="lg">Large (rounded-lg)</SelectItem>
-                          <SelectItem value="full">
-                            Full (rounded-full)
-                          </SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>Modify Style</AccordionTrigger>
+                <AccordionContent>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Border Radius
+                      </label>
+                      <Select
+                        value={borderRadius}
+                        onValueChange={setBorderRadius}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select border radius" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectItem value="none">
+                              None (rounded-none)
+                            </SelectItem>
+                            <SelectItem value="sm">
+                              Small (rounded-sm)
+                            </SelectItem>
+                            <SelectItem value="md">
+                              Medium (rounded-md)
+                            </SelectItem>
+                            <SelectItem value="lg">
+                              Large (rounded-lg)
+                            </SelectItem>
+                            <SelectItem value="full">
+                              Full (rounded-full)
+                            </SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Background Color
-                    </label>
-                    <Select value={bgColor} onValueChange={setBgColor}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select background color" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="none">
-                            None (Use variant default)
-                          </SelectItem>
-                          <SelectItem value="primary">Primary</SelectItem>
-                          <SelectItem value="secondary">Secondary</SelectItem>
-                          <SelectItem value="destructive">
-                            Destructive
-                          </SelectItem>
-                          <SelectItem value="accent">Accent</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Text Size
+                      </label>
+                      <Select value={textSize} onValueChange={setTextSize}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select text size" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectItem value="xs">
+                              Extra Small (text-xs)
+                            </SelectItem>
+                            <SelectItem value="sm">Small (text-sm)</SelectItem>
+                            <SelectItem value="base">
+                              Base (text-base)
+                            </SelectItem>
+                            <SelectItem value="lg">Large (text-lg)</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Text Size
-                    </label>
-                    <Select value={textSize} onValueChange={setTextSize}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select text size" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="xs">
-                            Extra Small (text-xs)
-                          </SelectItem>
-                          <SelectItem value="sm">Small (text-sm)</SelectItem>
-                          <SelectItem value="base">Base (text-base)</SelectItem>
-                          <SelectItem value="lg">Large (text-lg)</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
+                    <div>
+                      <label className="text-sm font-medium mb-2 block">
+                        Font Weight
+                      </label>
+                      <Select value={fontWeight} onValueChange={setFontWeight}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select font weight" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectItem value="normal">
+                              Normal (font-normal)
+                            </SelectItem>
+                            <SelectItem value="medium">
+                              Medium (font-medium)
+                            </SelectItem>
+                            <SelectItem value="semibold">
+                              Semibold (font-semibold)
+                            </SelectItem>
+                            <SelectItem value="bold">
+                              Bold (font-bold)
+                            </SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </CardContent>
+        </Card>
 
-                  <div>
-                    <label className="text-sm font-medium mb-2 block">
-                      Font Weight
-                    </label>
-                    <Select value={fontWeight} onValueChange={setFontWeight}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select font weight" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectItem value="normal">
-                            Normal (font-normal)
-                          </SelectItem>
-                          <SelectItem value="medium">
-                            Medium (font-medium)
-                          </SelectItem>
-                          <SelectItem value="semibold">
-                            Semibold (font-semibold)
-                          </SelectItem>
-                          <SelectItem value="bold">Bold (font-bold)</SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+        <div className="content-center border-4">
           <TestComponent
             variant={variant}
             borderRadius={borderRadius}
-            bgColor={bgColor}
             textSize={textSize}
             fontWeight={fontWeight}
           />
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </main>
   );
 }
