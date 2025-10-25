@@ -17,6 +17,7 @@ interface TestComponentProps extends Omit<motionWrapperProps, "children"> {
   bgColor?: string;
   textSize?: string;
   fontWeight?: string;
+  size?: "default" | "sm" | "lg" | "icon";
 }
 
 export default function TestComponent({
@@ -27,6 +28,7 @@ export default function TestComponent({
   whileHover,
   whileTap,
   ismotionActivated,
+  size,
 }: TestComponentProps) {
   // Map the values to Tailwind classes
   const borderRadiusClass = `rounded-${borderRadius}`;
@@ -41,6 +43,7 @@ export default function TestComponent({
     >
       <Button
         variant={variant}
+        size={size}
         className={cn(borderRadiusClass, textSizeClass, fontWeightClass)}
       >
         Hello

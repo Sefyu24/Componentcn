@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { hover } from "framer-motion";
+import ParamSelector from "@/components/paramSelector";
 
 interface ButtonStyleTypes {
   variant: variant;
@@ -28,6 +29,7 @@ interface ButtonStyleTypes {
   fontWeight: string;
   hoversize: number[];
   tapsize: number[];
+  size: "default" | "sm" | "lg" | "icon";
 }
 
 export default function Home() {
@@ -39,6 +41,7 @@ export default function Home() {
     fontWeight: "medium",
     hoversize: [1.2],
     tapsize: [1.2],
+    size: "default",
   });
 
   const setButtonConfig = <K extends keyof ButtonStyleTypes>(
@@ -55,6 +58,13 @@ export default function Home() {
     "outline",
     "secondary",
     "ghost",
+  ];
+
+  const buttonSize: ButtonStyleTypes["size"][] = [
+    "default",
+    "sm",
+    "lg",
+    "icon",
   ];
 
   const borderRadiusOptions = [
@@ -85,42 +95,31 @@ export default function Home() {
         >
           <CardContent>
             {/* Here Im going to add all options to customize the button with tailwind and motion */}
-            <div className="border-4 border-amber-300 p-4 flex flex-col gap-2 mb-4">
-              <Label>Rounded Borders</Label>
-              <Select
-                value={buttonStyle.borderRadius}
-                onValueChange={(v) => setButtonConfig("borderRadius", v)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select the border radius" />
-                </SelectTrigger>
-                <SelectContent>
-                  {borderRadiusOptions.map(({ value, label }) => (
-                    <SelectItem key={value} value={value}>
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="border-4 border-amber-300 p-4 flex flex-col gap-2 mb-4">
-              <Label>Variants component</Label>
-              <Select
-                value={buttonStyle.variant}
-                onValueChange={(v: variant) => setButtonConfig("variant", v)}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select the border radius" />
-                </SelectTrigger>
-                <SelectContent>
-                  {variants.map((v: variant) => (
-                    <SelectItem value={v} key={v}>
-                      {v}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+            <ParamSelector
+              title="Rounded Borders"
+              onValueChange={(v) => setButtonConfig("borderRadius", v)}
+              placeHolderValue="Select the border radius"
+              value={buttonStyle.borderRadius}
+              contentOptions={borderRadiusOptions}
+            />
+
+            <ParamSelector
+              title="Variants Component"
+              onValueChange={(v: variant) => setButtonConfig("variant", v)}
+              placeHolderValue="Select Variant"
+              value={buttonStyle.variant}
+              contentOptions={variants}
+            />
+
+            <ParamSelector
+              title="Size Component"
+              onValueChange={(v: ButtonStyleTypes["size"]) =>
+                setButtonConfig("size", v)
+              }
+              placeHolderValue="Select the size"
+              value={buttonStyle.size}
+              contentOptions={buttonSize}
+            />
             <div className="border-4 border-green-500 p-4 flex flex-col gap-2 mb-4">
               <Label>Hover Size </Label>
               <Slider
@@ -155,6 +154,7 @@ export default function Home() {
             whileHover={{ scale: buttonStyle.hoversize[0] }}
             whileTap={{ scale: buttonStyle.tapsize[0] }}
             ismotionActivated={true}
+            size={buttonStyle.size}
           />
         </div>
       </div>
