@@ -1,5 +1,7 @@
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
+import MotionWrapper from "./motion-template/motion-wrapper";
+import { motionWrapperProps } from "./motion-template/motion-wrapper";
 
 export type variant =
   | "default"
@@ -9,7 +11,7 @@ export type variant =
   | "secondary"
   | "ghost";
 
-interface TestComponentProps {
+interface TestComponentProps extends Omit<motionWrapperProps, "children"> {
   variant: variant;
   borderRadius?: string;
   bgColor?: string;
@@ -22,6 +24,9 @@ export default function TestComponent({
   borderRadius = "md",
   textSize = "sm",
   fontWeight = "medium",
+  whileHover,
+  whileTap,
+  ismotionActivated,
 }: TestComponentProps) {
   // Map the values to Tailwind classes
   const borderRadiusClass = `rounded-${borderRadius}`;
@@ -29,11 +34,17 @@ export default function TestComponent({
   const fontWeightClass = `font-${fontWeight}`;
 
   return (
-    <Button
-      variant={variant}
-      className={cn(borderRadiusClass, textSizeClass, fontWeightClass)}
+    <MotionWrapper
+      whileHover={whileHover}
+      whileTap={whileTap}
+      ismotionActivated={ismotionActivated}
     >
-      Hello
-    </Button>
+      <Button
+        variant={variant}
+        className={cn(borderRadiusClass, textSizeClass, fontWeightClass)}
+      >
+        Hello
+      </Button>
+    </MotionWrapper>
   );
 }

@@ -239,7 +239,7 @@ function MemberRow({ member }: MemberRowProps) {
         <div>
           <p className="font-medium text-foreground">{member.name}</p>
           <p className="text-sm text-muted-foreground">
-            Joined '{member.joinedYear}
+            Joined &apos {member.joinedYear}
           </p>
         </div>
       </div>
